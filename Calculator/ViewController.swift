@@ -12,6 +12,10 @@ class ViewController: UIViewController {
 
 
     @IBOutlet weak var display: UILabel!
+    
+    var brain = CalculatorBrain()
+    
+    
     var userIsInTheMiddleOfTypingNumber: Bool = false
     var decimalEnable: Bool = false
     @IBAction func appendDigit(sender: UIButton) {
@@ -48,7 +52,28 @@ class ViewController: UIViewController {
         userIsInTheMiddleOfTypingNumber = false;
         decimalEnable = false;
         operandStack.append(displayValue);
+        if let result = brain.pushOperand(displayValue){
+            displayValue = result;
+        }
         print("operandStack = \(operandStack)")
+    }
+    
+    @IBAction func clear(sender: AnyObject) {
+        operandStack = Array<Double>();
+        userIsInTheMiddleOfTypingNumber = false;
+        decimalEnable = false;
+    }
+    
+    @IBAction func backspace(sender: UIButton) {
+        let currStr = display.text!;
+        if (currStr.characters.count>1){
+            display.text = currStr.substringToIndex(currStr.startIndex.advancedBy(currStr.characters.count-1))
+        }
+        else{
+            if(currStr != "0"){
+                display.text = "0";
+            }
+        }
     }
     
     @IBAction func operate(sender: UIButton) {
