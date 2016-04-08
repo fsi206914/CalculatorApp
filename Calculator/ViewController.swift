@@ -55,6 +55,9 @@ class ViewController: UIViewController {
         if let result = brain.pushOperand(displayValue){
             displayValue = result;
         }
+        else{
+            displayValue = 0;
+        }
         print("operandStack = \(operandStack)")
     }
     
@@ -89,18 +92,14 @@ class ViewController: UIViewController {
             opDisplay.text = operation + "  " + String(format:"%f", operandStack[ct-1]);
         }
         
-        switch operation{
-        case "✕": performOperation {$0 * $1}
-        case "÷": performOperation {$1 / $0}
-        case "+": performOperation {$0 + $1}
-        case "−": performOperation {$1 - $0}
-        case "√": performSingleOperation{ sqrt($0) }
-        case "sin": performSingleOperation{ sin($0) }
-        case "cos": performSingleOperation{ cos($0) }
-        default: break
+        if let operation = sender.currentTitle {
+            if let result = brain.performOperation(operation) {
+                displayValue = result;
+            }
+            else{
+                displayValue = 0;
+            }
         }
-        
-        
         
     }
     
