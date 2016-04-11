@@ -47,22 +47,31 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var opDisplay: UILabel!
     
-    var operandStack = Array<Double>();
     @IBAction func enter() {
         userIsInTheMiddleOfTypingNumber = false;
         decimalEnable = false;
-        operandStack.append(displayValue);
-        if let result = brain.pushOperand(displayValue){
-            displayValue = result;
+        displayValue = brain.pushOperand(displayValue!)
+    }
+
+    @IBAction func operate(sender: UIButton) {
+        let operation = sender.currentTitle!;
+        if userIsInTheMiddleOfTypingNumber{
+            enter();
         }
-        else{
-            displayValue = 0;
+//        if(operation == "✕" || operation == "÷" || operation == "+" || operation == "−"){
+//            opDisplay.text = String(format:"%f", operandStack[ct-2]) + "  " + operation + "  " +  String(format:"%f", operandStack[ct-1]);
+//        }
+//        else{
+//            opDisplay.text = operation + "  " + String(format:"%f", operandStack[ct-1]);
+//        }
+        
+        if let operation = sender.currentTitle {
+            displayValue = brain.performOperation(operation)
         }
-        print("operandStack = \(operandStack)")
+        
     }
     
     @IBAction func clear(sender: AnyObject) {
-        operandStack = Array<Double>();
         userIsInTheMiddleOfTypingNumber = false;
         decimalEnable = false;
     }
@@ -79,50 +88,16 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func operate(sender: UIButton) {
-        let operation = sender.currentTitle!;
-        if userIsInTheMiddleOfTypingNumber{
-            enter();
-        }
-        let ct = operandStack.count;
-        if(operation == "✕" || operation == "÷" || operation == "+" || operation == "−"){
-            opDisplay.text = String(format:"%f", operandStack[ct-2]) + "  " + operation + "  " +  String(format:"%f", operandStack[ct-1]);
-        }
-        else{
-            opDisplay.text = operation + "  " + String(format:"%f", operandStack[ct-1]);
-        }
-        
-        if let operation = sender.currentTitle {
-            if let result = brain.performOperation(operation) {
-                displayValue = result;
-            }
-            else{
-                displayValue = 0;
-            }
-        }
-        
-    }
-    
-    func performOperation(operation: (Double, Double) -> Double){
-        if operandStack.count>=2 {
-            displayValue = operation(operandStack.removeLast(), operandStack.removeLast());
-            enter()
-        }
-    }
-
-    func performSingleOperation(operation: Double -> Double){
-        if operandStack.count>=1 {
-            displayValue = operation(operandStack.removeLast());
-            enter()
-        }
-    }
-    
-    var displayValue: Double {
+    var displayValue: Double? {
         get{
-            return NSNumberFormatter().numberFromString(display.text!)!.doubleValue
+            if let res =  NSNumberFormatter().numberFromString(display.text!){
+                return res.doubleValue;
+            }
+            display.text = "0";
+            return nil;
         }
         set{
-            display.text = "\(newValue)";
+            display.text = "\(newValue!)";
 //            userIsInTheMiddleOfTypingNumber = false;
         }
     }

@@ -29,6 +29,8 @@ class CalculatorBrain{
     private var opStack = [Op]();
     
     private var knownOps = [String:Op]();
+    var variableValues: Dictionary<String,Double>
+        = [String:Double]();
     
     init(){
         knownOps["✕"] = Op.BinaryOperation("✕"){$0 * $1}
@@ -70,6 +72,12 @@ class CalculatorBrain{
         print("\(opStack) = \(result) with (remainder) left over")
         return result;
     }
+
+    func pushOperand(symbol: String) -> Double?{
+    
+    opStack.append(Op.Operand(variableValues[symbol]!));
+        return evaluate();
+    }
     
     func pushOperand(operand: Double) -> Double?{
         opStack.append(Op.Operand(operand));
@@ -83,4 +91,10 @@ class CalculatorBrain{
         return evaluate();
         
     }
+    
+//    var description: String {
+//        get{
+//            
+//        }
+//    }
 }
