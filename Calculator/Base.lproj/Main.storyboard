@@ -233,15 +233,17 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="msc-d1-vXZ">
                                 <rect key="frame" x="440" y="252" width="80" height="71"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" title="→M"/>
                                 <connections>
-                                    <action selector="operate:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tDG-si-FMQ"/>
+                                    <action selector="storeM:" destination="BYZ-38-t0r" eventType="touchUpInside" id="SUj-Ir-8uf"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xil-Ee-cYD">
                                 <rect key="frame" x="440" y="331" width="80" height="71"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" title="M"/>
                                 <connections>
-                                    <action selector="operate:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VXa-pc-52E"/>
+                                    <action selector="pushM:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ljN-Fy-ANz"/>
                                 </connections>
                             </button>
                         </subviews>

@@ -15,7 +15,6 @@ class ViewController: UIViewController {
     
     var brain = CalculatorBrain()
     
-    
     var userIsInTheMiddleOfTypingNumber: Bool = false
     var decimalEnable: Bool = false
     @IBAction func appendDigit(sender: UIButton) {
@@ -51,8 +50,20 @@ class ViewController: UIViewController {
         userIsInTheMiddleOfTypingNumber = false;
         decimalEnable = false;
         displayValue = brain.pushOperand(displayValue!)
+        opDisplay.text = brain.description;
     }
 
+    @IBAction func storeM(sender: AnyObject) {
+        brain.variableValues["M"] = displayValue!;
+        userIsInTheMiddleOfTypingNumber = false;
+        decimalEnable = false;
+        
+    }
+    @IBAction func pushM(sender: AnyObject) {
+        brain.pushOperand("M")
+        opDisplay.text = brain.description;
+    }
+    
     @IBAction func operate(sender: UIButton) {
         let operation = sender.currentTitle!;
         if userIsInTheMiddleOfTypingNumber{
@@ -67,6 +78,7 @@ class ViewController: UIViewController {
         
         if let operation = sender.currentTitle {
             displayValue = brain.performOperation(operation)
+            opDisplay.text = brain.description;
         }
         
     }
