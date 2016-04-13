@@ -54,18 +54,21 @@ class ViewController: UIViewController {
     }
 
     @IBAction func storeM(sender: AnyObject) {
-        brain.variableValues["M"] = displayValue!;
+        if let currVal = displayValue {
+            brain.variableValues["M"] = currVal
+            displayValue=brain.assignM(currVal)
+        }
         userIsInTheMiddleOfTypingNumber = false;
         decimalEnable = false;
-        
     }
+    
     @IBAction func pushM(sender: AnyObject) {
         brain.pushOperand("M")
         opDisplay.text = brain.description;
     }
     
     @IBAction func operate(sender: UIButton) {
-        let operation = sender.currentTitle!;
+        _ = sender.currentTitle!;
         if userIsInTheMiddleOfTypingNumber{
             enter();
         }
@@ -109,8 +112,13 @@ class ViewController: UIViewController {
             return nil;
         }
         set{
-            display.text = "\(newValue!)";
-//            userIsInTheMiddleOfTypingNumber = false;
+            if let vl = newValue{
+                display.text = "\(vl)";
+            }
+            else{
+                display.text = "0";
+            }
+            userIsInTheMiddleOfTypingNumber = false;
         }
     }
 }
