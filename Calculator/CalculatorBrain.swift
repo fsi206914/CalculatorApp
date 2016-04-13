@@ -47,6 +47,18 @@ class CalculatorBrain{
     
     private var opStack = [Op]();
     
+    func assignM(val: Double) -> Double? {
+        let updatedOpStack = opStack.map{
+            (op) -> Op in
+            switch op {
+                case .Memory(_): return Op.Operand(val);
+                default: return op;
+            }
+        }
+        opStack = updatedOpStack
+        return evaluate();
+    }
+    
     private var knownOps = [String:Op]();
     var variableValues: Dictionary<String,Double>
         = [String:Double]();
@@ -72,7 +84,6 @@ class CalculatorBrain{
                     return (value, remainingOps)
                 }
                 return(nil, ops);
-                
             case .UnaryOperation(_, let operation):
                 let operandEvaluation = evaluate(remainingOps);
                 if let operand = operandEvaluation.result {
@@ -92,13 +103,12 @@ class CalculatorBrain{
     }
     
     func evaluate() -> Double?{
-        let (result, remainder) = evaluate(opStack)
+        let (result, _) = evaluate(opStack)
         print("\(opStack) = \(result) with (remainder) left over")
         return result;
     }
 
     func pushOperand(symbol: String) -> Double?{
-    
        opStack.append(Op.Memory(symbol));
        return evaluate();
     }
@@ -113,7 +123,6 @@ class CalculatorBrain{
             opStack.append(operation);
         }
         return evaluate();
-        
     }
     
     var description: String {
@@ -145,7 +154,6 @@ class CalculatorBrain{
             switch op{
             case .Operand(let operand):
                 return ("\(operand)", remainingOps);
-            
             case .Memory(let str):
                 return (str, remainingOps);
             
@@ -157,8 +165,10 @@ class CalculatorBrain{
             case .BinaryOperation(let opName, _):
                 let operand1Str = genExpression(remainingOps);
                 if let operand1 = operand1Str.res {
+                    print("operand1Str =" + operand1)
                     let operand2Str = genExpression(operand1Str.remainOps);
                     if let operand2 = operand2Str.res {
+                        print("operand2Str =" + operand2)
                         return ("(" + operand2 + opName + operand1 + ")", operand2Str.remainOps);
                     }
                 }
@@ -167,7 +177,5 @@ class CalculatorBrain{
         }
         return (nil, currOps);
     }
-    
-    
-    
+
 }

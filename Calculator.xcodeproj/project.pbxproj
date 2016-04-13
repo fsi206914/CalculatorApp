@@ -14,6 +14,7 @@
 		8F6543CD1CB310D100BE4C38 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F6543CB1CB310D100BE4C38 /* LaunchScreen.storyboard */; };
 		8F6543D81CB310D100BE4C38 /* CalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6543D71CB310D100BE4C38 /* CalculatorTests.swift */; };
 		8F6543E31CB310D100BE4C38 /* CalculatorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6543E21CB310D100BE4C38 /* CalculatorUITests.swift */; };
+		8F6543F11CB6F0B600BE4C38 /* CalculatorBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6543F01CB6F0B600BE4C38 /* CalculatorBrain.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		8F6543DE1CB310D100BE4C38 /* CalculatorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CalculatorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F6543E21CB310D100BE4C38 /* CalculatorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorUITests.swift; sourceTree = "<group>"; };
 		8F6543E41CB310D100BE4C38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8F6543F01CB6F0B600BE4C38 /* CalculatorBrain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculatorBrain.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 				8F6543C21CB310D100BE4C38 /* AppDelegate.swift */,
 				8F6543C41CB310D100BE4C38 /* ViewController.swift */,
 				8F6543C61CB310D100BE4C38 /* Main.storyboard */,
+				8F6543F01CB6F0B600BE4C38 /* CalculatorBrain.swift */,
 				8F6543C91CB310D100BE4C38 /* Assets.xcassets */,
 				8F6543CB1CB310D100BE4C38 /* LaunchScreen.storyboard */,
 				8F6543CE1CB310D100BE4C38 /* Info.plist */,
@@ -256,6 +259,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F6543F11CB6F0B600BE4C38 /* CalculatorBrain.swift in Sources */,
 				8F6543C51CB310D100BE4C38 /* ViewController.swift in Sources */,
 				8F6543C31CB310D100BE4C38 /* AppDelegate.swift in Sources */,
 			);
